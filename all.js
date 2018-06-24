@@ -22,10 +22,10 @@ var svg = d3.select("#map_container")
 var g = svg.append("g");
 
 function init(){
-setTimeout(function(){
-    $('.loadimg').hide();
-    $('.loading').hide();
-},5000);
+// setTimeout(function(){
+//     $('.loadimg').hide();
+//     $('.loading').hide();
+// },5000);
 
 var xhr = new XMLHttpRequest();
 xhr.open('get', "https://api-proxy.noob.tw/http://opendata2.epa.gov.tw/AQI.json", true);
@@ -36,6 +36,8 @@ xhr.onload = function(){
     console.log(data); //77
 
 d3.json("./data/taiwan.json", function (json) {
+    $('.loadimg').hide();
+    $('.loading').hide();
     console.log(json.features);  //375
 
     // from colorbrewer (http://colorbrewer2.org/)

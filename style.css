@@ -34,6 +34,7 @@ h1{
     padding: 1rem;
     width: 20%;
     display: inline-block;
+    margin-left:5vh;
 }
 
 th{
@@ -133,6 +134,7 @@ h2{
     float: right;
     /* padding-top:24px; */
     line-height: 12vh;
+    margin-right: 10vh;
 }
 
 .loading{
@@ -171,5 +173,9 @@ h2{
     height: 2rem;
     padding-top: 1vh;
     color: #ffffff;
+}
+.notifyBtn{
+    font-family: "微軟正黑體";
+    font-size: 20px;
 }
 

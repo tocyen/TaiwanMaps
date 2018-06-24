@@ -13,7 +13,7 @@
     <div class="header">
         <h1>PM2.5 空汙地圖</h1>
         <span class="filter danny" onclick="openNav()">縣市分類</span>
-        <span class="notification danny">通知<form name="Area">
+        <span class="notification danny"><form name="Area">
             縣市：
             <select size=1 onChange="renew(this.selectedIndex);">
               <option value="請選取縣市">請選取縣市</option>
@@ -45,7 +45,7 @@
             <select id="LocalArea" name="LocalArea" size=1>
               <option value="">請由左方選取縣市
             </select>
-            <input type="button" id="button" onclick="notify()" value="空汙通知">
+            <input type="button" id="button" onclick="notify()" value="接收空汙通知">
             </form>
         </span>
     </div>
@@ -360,8 +360,7 @@
     <img class="loadimg" src="https://loading.io/spinners/ellipsis/lg.discuss-ellipsis-preloader.gif">
     <div class="loading"></div>
 
-    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
-    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="all.js"></script>
     <script>
 

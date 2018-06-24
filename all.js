@@ -22,11 +22,6 @@ var svg = d3.select("#map_container")
 var g = svg.append("g");
 
 function init(){
-// setTimeout(function(){
-//     $('.loadimg').hide();
-//     $('.loading').hide();
-// },5000);
-
 var xhr = new XMLHttpRequest();
 xhr.open('get', "https://api-proxy.noob.tw/http://opendata2.epa.gov.tw/AQI.json", true);
 xhr.send();
@@ -344,7 +339,26 @@ function click(d) {
     dataOutside.forEach(function(e){
         if (e.SiteName + '區' ===  d.properties.TOWN || e.SiteName + '鄉' ===  d.properties.TOWN || e.SiteName + '鎮' ===  d.properties.TOWN || e.SiteName + '市' ===  d.properties.TOWN ){
             document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
-        }else if (d.properties.value <=0 || d.properties.value == null){
+        }
+        else if(e.SiteName === '古亭' && d.properties.TOWN === '中正區'){
+            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '忠明' && d.properties.TOWN === '西區'){
+            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '陽明' && d.properties.TOWN === '士林區'){
+            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '富貴角' && d.properties.TOWN === '石門區'){
+            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '馬祖' && d.properties.COUNTY === '連江縣'){
+            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '金門' && d.properties.COUNTY === '金門縣'){
+            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if (d.properties.value <=0 || d.properties.value == null){
             document.querySelector('.one').innerHTML = "<div>" + d.properties.TOWN + "</div>" + "<p>無資料</p>";
         }
         $('.one').show();

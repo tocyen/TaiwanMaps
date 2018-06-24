@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js'></script>
+    <title>TaiwanMap</title>
+</head>
+<body>
+    <div class="header">
+        <h1>PM2.5 空汙地圖</h1>
+        <span class="filter danny" onclick="openNav()">縣市分類</span>
+        <span class="notification danny">通知<form name="Area">
+            縣市：
+            <select size=1 onChange="renew(this.selectedIndex);">
+              <option value="請選取縣市">請選取縣市</option>
+              <option value="基隆市">基隆市</option>
+              <option value="新北市">新北市</option>
+              <option value="臺北市">台北市</option>
+              <option value="桃園市">桃園市</option>
+              <option value="新竹市">新竹市</option>
+              <option value="新竹縣">新竹縣</option>
+              <option value="苗栗縣">苗栗縣</option>
+              <option value="臺中市">台中市</option>
+              <option value="彰化縣">彰化縣</option>
+              <option value="南投縣">南投縣</option>
+              <option value="雲林縣">雲林縣</option>
+              <option value="嘉義縣">嘉義縣</option>
+              <option value="嘉義市">嘉義市</option>
+              <option value="臺南市">台南市</option>
+              <option value="高雄市">高雄市</option>
+              <option value="屏東縣">屏東縣</option>
+              <option value="宜蘭縣">宜蘭縣</option>
+              <option value="花蓮縣">花蓮縣</option>
+              <option value="臺東縣">台東縣</option>
+              <option value="澎湖縣">澎湖縣</option>
+              <option value="金門縣">金門縣</option>
+              <option value="連江縣">連江縣</option>
+            </select>
+
+            鄉鎮市區：
+            <select id="LocalArea" name="LocalArea" size=1>
+              <option value="">請由左方選取縣市
+            </select>
+            <input type="button" id="button" onclick="notify()" value="空汙通知">
+            </form>
+        </span>
+    </div>
+    <img src="PM25圖示.png" alt="">
+    <table border="0" cellpadding="10">
+        <tr>
+            <td>
+                <div id="map_container"></div>
+            </td>
+            <td>
+                <div class="one"></div>
+            </td>
+        </tr>
+    </table>
+
+    <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <tr>
+                <td>
+                    <div id="table_container" class="csvTable">
+                        <div class="north">
+                            <h2>基隆市</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="KeelongTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="north">
+                            <h2>新北市</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="NewTaipeiTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="north">
+                            <h2>台北市</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="TaipeiTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="north">
+                            <h2>桃園市</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="TaoyuanTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="north">
+                            <h2>新竹市</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="HsinchuCiTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="north">
+                            <h2>新竹縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="HsinchuCouTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="north">
+                            <h2>苗栗縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="MiaoleeTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="central">
+                            <h2>台中市</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="TaichungTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="central">
+                            <h2>彰化縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="ChanghwaTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="central">
+                            <h2>南投縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="NantouTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="south">
+                            <h2>雲林縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="YunlinTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="south">
+                            <h2>嘉義縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="ChiayiCouTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="south">
+                            <h2>嘉義市</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="ChiayiCiTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="south">
+                            <h2>台南市</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="TainanTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="south">
+                            <h2>高雄市</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="KaohsiungTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="south">
+                            <h2>屏東縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="PingtongTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="east">
+                            <h2>宜蘭縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="YilanTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="east">
+                            <h2>花蓮縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="HualienTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="east">
+                            <h2>台東縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="TaitongTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="island">
+                            <h2>澎湖縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="PonghuTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="island">
+                            <h2>金門縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="JinmanTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="island">
+                            <h2>連江縣</h2>
+                            <table class="sub">
+                                <thead>
+                                    <tr>
+                                        <td>鄉鎮市</td>
+                                        <td>PM2.5</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="LienjongTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+    </div>
+
+    <img class="loadimg" src="https://loading.io/spinners/ellipsis/lg.discuss-ellipsis-preloader.gif">
+    <div class="loading"></div>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="all.js"></script>
+    <script>
+
+    $('h2').click(function(e){
+                $('.csvTable table').slideUp();
+                $(this).parent().find('table').slideToggle();
+              })
+
+    function openNav(){
+            document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav(){
+        document.getElementById("mySidenav").style.width = "0";
+    }
+
+    </script>
+</body>
+</html>

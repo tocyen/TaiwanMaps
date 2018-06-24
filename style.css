@@ -1,0 +1,156 @@
+body{
+    background-color: #398fd6;
+    font-family: "微軟正黑體";
+    position: relative;
+    margin: 0 auto;
+}
+
+svg{
+    margin-left: 15rem;
+}
+
+table{
+    text-align: center;
+}
+
+.header{
+    background-color: #1c262c;
+    width: 100%;
+}
+
+h1{
+    font-size: 32px;
+    margin: 0;
+    color: #ffffff;
+    padding: 1rem;
+    width: 20%;
+    display: inline-block;
+}
+
+th{
+    font-size: 20px;
+}
+
+td{
+    font-size: 17px;
+    padding-top:5px;
+}
+
+
+img{
+    float: right;
+    width: 30%;
+    position: absolute;
+    right: 20px;
+    top: 5.5rem;
+}
+
+.csvTable table{
+    display: none;
+}
+
+h2{
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 4.5rem;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    /* padding-top: 60px; */
+}
+
+.sidenav h2, a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav td, tr{
+    padding: 8px 8px 8px 32px;
+    font-size: 15px;
+    color: #818181;
+}
+
+.sidenav tr td:first-child{
+    cursor: pointer;
+}
+
+.sidenav h2:hover{
+    color: #f1f1f1;
+}
+
+.sidenav td:first-child:hover{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn{
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px){
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.danny{
+    font-size: 24px;
+    cursor: pointer;
+    display: inline-block;
+    color: #ffffff;
+}
+
+.notification{
+    float: right;
+}
+
+.loading{
+    position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	width: 100vw;
+	height: 100%;
+	height: 100vh;
+	z-index: 99;
+	background: rgba(200, 200, 200, 0.9);
+}
+
+.loadimg{
+    position: relative;
+    top: -35rem;
+    right: 45rem;
+    width: 200px;
+    z-index: 999;
+}
+
+.one{
+    position: relative;
+    height: 300px;
+    width: 200px;
+    background-color: #CCDDFF;
+    display: none;
+    margin-left: 10rem;
+}
+
+.one div{
+    background-color: #FF8800;
+    height: 2rem;
+    padding-top: 1vh;
+    color: #ffffff;
+}
+

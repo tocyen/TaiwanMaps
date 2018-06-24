@@ -28,7 +28,7 @@ setTimeout(function(){
 },5000);
 
 var xhr = new XMLHttpRequest();
-xhr.open('get', "https://api-proxy.noob.tw/opendata2.epa.gov.tw/AQI.json", true);
+xhr.open('get', "https://api-proxy.noob.tw/http://opendata2.epa.gov.tw/AQI.json", true);
 xhr.send();
 xhr.onload = function(){
 

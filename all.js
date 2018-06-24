@@ -35,7 +35,7 @@ xhr.onload = function(){
     var data = JSON.parse(xhr.responseText);
     console.log(data); //77
 
-d3.json("/data/taiwan.json", function (json) {
+d3.json("./data/taiwan.json", function (json) {
     console.log(json.features);  //375
 
     // from colorbrewer (http://colorbrewer2.org/)

@@ -251,7 +251,7 @@ init();
 
 //Notification
 var xhr1 = new XMLHttpRequest();
-xhr1.open("get","http://opendata2.epa.gov.tw/AQI.json",false)
+xhr1.open("get","https://api-proxy.noob.tw/http://opendata2.epa.gov.tw/AQI.json",false)
 var data1 = {};
 
 xhr1.onload = function(){

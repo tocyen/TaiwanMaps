@@ -152,7 +152,7 @@ h2{
 .loadimg{
     position: relative;
     top: -30rem;
-    right: 25rem;
+    right: 30rem;
     width: 200px;
     z-index: 999;
 }

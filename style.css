@@ -150,9 +150,9 @@ h2{
 }
 
 .loadimg{
-    position: fixed;
+    position: relative;
     top: -30rem;
-    right: 10rem;
+    right: 20rem;
     width: 200px;
     z-index: 999;
 }

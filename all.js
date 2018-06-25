@@ -1,3 +1,5 @@
+Notification.requestPermission();
+
 var w = 900;
 var h = 800;
 var active;
@@ -424,9 +426,6 @@ function notify()
     }
 
     if (window.Notification) {
-    // 获得权限
-	    Notification.requestPermission();
-    // 点击按钮
         document.querySelector('#button').addEventListener('click', function () {
             new Notification("PM2.5空汙", {
             body: output +'的PM2.5空汙數值：' + str1,
@@ -586,7 +585,7 @@ function tableRowClicked(x) {
         if(x === '東' && x + '區' === d.properties.TOWN && d.properties.COUNTY === '嘉義市'){
             var county = d;
             console.log(x,d);
-            click(d); 
+            click(d);
         }
         else if (x +'區' === d.properties.TOWN || x+'鄉' === d.properties.TOWN || x+'鎮' === d.properties.TOWN || x+'市' === d.properties.TOWN) {
             var county = d;

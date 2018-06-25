@@ -6,7 +6,7 @@ body{
 }
 
 svg{
-    margin-left: 25rem;
+    margin-left: 20rem;
 
 }
 
@@ -159,12 +159,12 @@ h2{
 
 .one{
     position: fixed;
-    height: 300px;
+    height: 350px;
     width: 200px;
     background-color: #CCDDFF;
     display: none;
     margin-left: 10rem;
-    right: 15%;
+    right: 5%;
     top: 30%;
 }
 

@@ -6,7 +6,7 @@ body{
 }
 
 svg{
-    margin-left: 15rem;
+    margin-left: 25rem;
 
 }
 
@@ -151,8 +151,8 @@ h2{
 
 .loadimg{
     position: relative;
-    top: -35rem;
-    right: 45rem;
+    top: -30rem;
+    right: 50rem;
     width: 200px;
     z-index: 999;
 }
@@ -164,8 +164,8 @@ h2{
     background-color: #CCDDFF;
     display: none;
     margin-left: 10rem;
-    right: 0;
-    top:30%;
+    right: 15%;
+    top: 30%;
 }
 
 .one div{

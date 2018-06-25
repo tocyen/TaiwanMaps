@@ -57,27 +57,69 @@ d3.json("./data/taiwan.json", function (json) {
 
     json.features.forEach(function (d, i) {
         data.forEach(function (e, j) {
-            if (e.SiteName+'區' === d.properties.TOWN || e.SiteName+'鄉' === d.properties.TOWN || e.SiteName+'鎮' === d.properties.TOWN || e.SiteName+'市' === d.properties.TOWN) {
-                d.properties.value = +e["PM2.5_AVG"];
-                // console.log(d.properties.TOWN+d.properties.value);
+            if(e.SiteName === '古亭' && d.properties.TOWN === '中正區' && d.properties.COUNTY === '臺北市'){
+                d.properties.value = +e["PM2.5"];
             }
-            else if(e.SiteName === '古亭' && d.properties.TOWN === '中正區'){
-                d.properties.value = +e["PM2.5_AVG"];
+            else if(e.SiteName === '桃園' && d.properties.TOWN === '楊梅市' && d.properties.COUNTY === '桃園縣'){
+                d.properties.value = +e["PM2.5"];
             }
-            else if(e.SiteName === '忠明' && d.properties.TOWN === '西區'){
-                d.properties.value = +e["PM2.5_AVG"];
+            else if(e.SiteName === '新竹' && d.properties.TOWN === '香山區' && d.properties.COUNTY === '新竹市'){
+                d.properties.value = +e["PM2.5"];
             }
-            else if(e.SiteName === '陽明' && d.properties.TOWN === '士林區'){
-                d.properties.value = +e["PM2.5_AVG"];
+            else if(e.SiteName === '基隆' && d.properties.TOWN === '七堵區' && d.properties.COUNTY === '基隆市'){
+                d.properties.value = +e["PM2.5"];
             }
-            else if(e.SiteName === '富貴角' && d.properties.TOWN === '石門區'){
-                d.properties.value = +e["PM2.5_AVG"];
+            else if(e.SiteName === '苗栗' && d.properties.TOWN === '西湖鄉' && d.properties.COUNTY === '苗栗縣'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '彰化' && d.properties.TOWN === '田中鎮' && d.properties.COUNTY === '彰化縣'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '南投' && d.properties.TOWN === '仁愛鄉' && d.properties.COUNTY === '南投縣'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '嘉義' && d.properties.TOWN === '東區' && d.properties.COUNTY === '嘉義市'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '臺南' && d.properties.TOWN === '白河區' && d.properties.COUNTY === '臺南市'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '宜蘭' && d.properties.TOWN === '蘇澳鎮' && d.properties.COUNTY === '宜蘭縣'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '花蓮' && d.properties.TOWN === '鳳林鎮' && d.properties.COUNTY === '花蓮縣'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '臺東' && d.properties.TOWN === '卑南鄉' && d.properties.COUNTY === '臺東縣'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '屏東' && d.properties.TOWN === '泰武鄉' && d.properties.COUNTY === '屏東縣'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '忠明' && d.properties.TOWN === '西區' && d.properties.COUNTY === '臺中市'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '陽明' && d.properties.TOWN === '士林區' && d.properties.COUNTY === '臺北市'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '富貴角' && d.properties.TOWN === '石門區' && d.properties.COUNTY === '新北市'){
+                d.properties.value = +e["PM2.5"];
+            }
+            else if(e.SiteName === '復興' && d.properties.TOWN === '復興鄉'){
+                d.properties.value = -10;
+            }
+            else if(e.SiteName === '復興' && d.properties.TOWN === '前鎮區' && d.properties.COUNTY === '高雄市'){
+                d.properties.value = +e["PM2.5"];
             }
             else if(e.SiteName === '馬祖' && d.properties.COUNTY === '連江縣'){
-                d.properties.value = +e["PM2.5_AVG"];
+                d.properties.value = +e["PM2.5"];
             }
             else if(e.SiteName === '金門' && d.properties.COUNTY === '金門縣'){
-                d.properties.value = +e["PM2.5_AVG"];
+                d.properties.value = +e["PM2.5"];
+            }
+            else if (e.SiteName+'區' === d.properties.TOWN || e.SiteName+'鄉' === d.properties.TOWN || e.SiteName+'鎮' === d.properties.TOWN || e.SiteName+'市' === d.properties.TOWN) {
+                d.properties.value = +e["PM2.5"];
+                // console.log(d.properties.TOWN+d.properties.value);
             }
             else if(d.properties.value <=0 || d.properties.value == null){
                 d.properties.value = -10;
@@ -113,76 +155,149 @@ d3.json("./data/taiwan.json", function (json) {
         LienjongStr="";
 
 
-             for(var i = 0;data.length>i;i++){
-                 switch(data[i].County){
-                    case "基隆市":
-                        KeelongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "新北市":
-                        NewTaipeiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "臺北市":
-                        TaipeiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "桃園市":
-                        TaoyuanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "新竹市":
-                        HsinchuCiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "新竹縣":
-                        HsinchuCouStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "苗栗縣":
-                        MiaoleeStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "臺中市":
-                        TaichungStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "彰化縣":
-                        ChanghwaStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "南投縣":
-                        NantouStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "雲林縣":
-                        YunlinStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "嘉義縣":
-                        ChiayiCouStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "嘉義市":
-                        ChiayiCiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "臺南市":
-                        TainanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "高雄市":
-                        KaohsiungStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "屏東縣":
-                        PingtongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "宜蘭縣":
-                        YilanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "花蓮縣":
-                        HualienStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "臺東縣":
-                        TaitongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "澎湖縣":
-                        PonghuStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "金門縣":
-                        JinmanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    case "連江縣":
-                        LienjongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5_AVG"]+'</td></tr>';
-                        break;
-                    }
-                }
+        for(var i = 0;data.length>i;i++){
+            switch(data[i].County){
+               case "基隆市":
+                   if(data[i]["PM2.5"]==="")
+                       KeelongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       KeelongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "新北市":
+                   if(data[i]["PM2.5"]==="")
+                       NewTaipeiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       NewTaipeiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "臺北市":
+                   if(data[i]["PM2.5"]==="")
+                       TaipeiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       TaipeiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "桃園市":
+                   if(data[i]["PM2.5"]==="")
+                       TaoyuanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       TaoyuanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "桃園縣":
+                   if(data[i]["PM2.5"]==="")
+                       TaoyuanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       TaoyuanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "新竹市":
+                   if(data[i]["PM2.5"]==="")
+                       HsinchuCiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       HsinchuCiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "新竹縣":
+                   if(data[i]["PM2.5"]==="")
+                       HsinchuCouStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       HsinchuCouStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "苗栗縣":
+                   if(data[i]["PM2.5"]==="")
+                       MiaoleeStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       MiaoleeStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "臺中市":
+                   if(data[i]["PM2.5"]==="")
+                       TaichungStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       TaichungStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "彰化縣":
+                   if(data[i]["PM2.5"]==="")
+                       ChanghwaStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       ChanghwaStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "南投縣":
+                   if(data[i]["PM2.5"]==="")
+                       NantouStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       NantouStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "雲林縣":
+                   if(data[i]["PM2.5"]==="")
+                       YunlinStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       YunlinStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "嘉義縣":
+                   if(data[i]["PM2.5"]==="")
+                       ChiayiCouStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       ChiayiCouStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "嘉義市":
+                   if(data[i]["PM2.5"]==="")
+                       ChiayiCiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       ChiayiCiStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "臺南市":
+                   if(data[i]["PM2.5"]==="")
+                       TainanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       TainanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "高雄市":
+                   if(data[i]["PM2.5"]==="")
+                       KaohsiungStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else if(data[i].SiteName ==='前鎮'){}
+                   else
+                       KaohsiungStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "屏東縣":
+                   if(data[i]["PM2.5"]==="")
+                       PingtongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       PingtongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "宜蘭縣":
+                   if(data[i]["PM2.5"]==="")
+                       YilanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       YilanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "花蓮縣":
+                   if(data[i]["PM2.5"]==="")
+                       HualienStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       HualienStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "臺東縣":
+                   if(data[i]["PM2.5"]==="")
+                       TaitongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       TaitongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "澎湖縣":
+                   if(data[i]["PM2.5"]==="")
+                       PonghuStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       PonghuStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "金門縣":
+                   if(data[i]["PM2.5"]==="")
+                       JinmanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       JinmanStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               case "連江縣":
+                   if(data[i]["PM2.5"]==="")
+                       LienjongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i].Status+'</td></tr>';
+                   else
+                       LienjongStr += '<tr><td>'+ data[i].SiteName +'</td>'+'<td>'+ data[i]["PM2.5"]+'</td></tr>';
+                   break;
+               }
+           }
                document.querySelector('.KeelongTable').innerHTML = KeelongStr;
                document.querySelector('.NewTaipeiTable').innerHTML = NewTaipeiStr;
                document.querySelector('.TaipeiTable').innerHTML = TaipeiStr;
@@ -301,7 +416,7 @@ function notify()
 
     for(var i = 0;data1.length>i;i++){
         if(data1[i].SiteName == output){
-            str1 = data1[i]['PM2.5_AVG'];
+            str1 = data1[i]['PM2.5'];
             console.log(str1);
         }else{
             str2 = '無此縣市數值';
@@ -337,29 +452,68 @@ function click(d) {
 
 
     dataOutside.forEach(function(e){
-        if (e.SiteName + '區' ===  d.properties.TOWN || e.SiteName + '鄉' ===  d.properties.TOWN || e.SiteName + '鎮' ===  d.properties.TOWN || e.SiteName + '市' ===  d.properties.TOWN ){
-            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        if(e.SiteName === '古亭' && d.properties.TOWN === '中正區' && d.properties.COUNTY === '臺北市'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
         }
-        else if(e.SiteName === '古亭' && d.properties.TOWN === '中正區'){
-            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        else if(e.SiteName === '桃園' && d.properties.TOWN === '楊梅市' && d.properties.COUNTY === '桃園縣'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
         }
-        else if(e.SiteName === '忠明' && d.properties.TOWN === '西區'){
-            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        else if(e.SiteName === '新竹' && d.properties.TOWN === '香山區' && d.properties.COUNTY === '新竹市'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
         }
-        else if(e.SiteName === '陽明' && d.properties.TOWN === '士林區'){
-            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        else if(e.SiteName === '基隆' && d.properties.TOWN === '七堵區' && d.properties.COUNTY === '基隆市'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
         }
-        else if(e.SiteName === '富貴角' && d.properties.TOWN === '石門區'){
-            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        else if(e.SiteName === '苗栗' && d.properties.TOWN === '西湖鄉' && d.properties.COUNTY === '苗栗縣'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '彰化' && d.properties.TOWN === '田中鎮' && d.properties.COUNTY === '彰化縣'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '南投' && d.properties.TOWN === '仁愛鄉' && d.properties.COUNTY === '南投縣'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '嘉義' && d.properties.TOWN === '東區' && d.properties.COUNTY === '嘉義市'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '臺南' && d.properties.TOWN === '白河區' && d.properties.COUNTY === '臺南市'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '宜蘭' && d.properties.TOWN === '蘇澳鎮' && d.properties.COUNTY === '宜蘭縣'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '花蓮' && d.properties.TOWN === '鳳林鎮' && d.properties.COUNTY === '花蓮縣'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '臺東' && d.properties.TOWN === '卑南鄉' && d.properties.COUNTY === '臺東縣'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '屏東' && d.properties.TOWN === '泰武鄉' && d.properties.COUNTY === '屏東縣'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '忠明' && d.properties.TOWN === '西區' && d.properties.COUNTY === '臺中市'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '陽明' && d.properties.TOWN === '士林區' && d.properties.COUNTY === '臺北市'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '復興' && d.properties.TOWN === '前鎮區' && d.properties.COUNTY === '高雄市'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if(e.SiteName === '富貴角' && d.properties.TOWN === '石門區' && d.properties.COUNTY === '新北市'){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
         }
         else if(e.SiteName === '馬祖' && d.properties.COUNTY === '連江縣'){
-            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
         }
         else if(e.SiteName === '金門' && d.properties.COUNTY === '金門縣'){
-            document.querySelector('.one').innerHTML = "<div>" + e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+ e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
+        }
+        else if (e.SiteName + '區' ===  d.properties.TOWN || e.SiteName + '鄉' ===  d.properties.TOWN || e.SiteName + '鎮' ===  d.properties.TOWN || e.SiteName + '市' ===  d.properties.TOWN ){
+            document.querySelector('.one').innerHTML = "<div>" +e.County +' '+e.SiteName + "</div>" + "<p>" + e.PublishTime + "</p>" + "<p>污染物：" + e["Pollutant"] + "</p>" + "<p>空氣品質：" + e["Status"] + "</p>" + "<p>PM2.5：" + e["PM2.5"] + "</p>" + "<p>PM10：" + e["PM10"] + "</p>" + "<p>SO2：" + e["SO2"] + "</p>";
         }
         else if (d.properties.value <=0 || d.properties.value == null){
-            document.querySelector('.one').innerHTML = "<div>" + d.properties.TOWN + "</div>" + "<p>無資料</p>";
+            document.querySelector('.one').innerHTML = "<div>" +d.properties.COUNTY +' '+ d.properties.TOWN + "</div>" + "<p>無資料</p>";
         }
         $('.one').show();
     });
@@ -377,8 +531,38 @@ function tableRowClicked(x) {
             case "菜寮":
                 x= "三重";
                 break;
+            case "桃園":
+                x= "楊梅";
+                break;
+            case "新竹":
+                x= "香山";
+                break;
+            case "苗栗":
+                x= "西湖";
+                break;
+            case "彰化":
+                x= "田中";
+                break;
+            case "南投":
+                x= "仁愛";
+                break;
+            case "嘉義":
+                x= "東";
+                break;
+            case "臺南":
+                x= "白河";
+                break;
+            case "宜蘭":
+                x= "蘇澳";
+                break;
+            case "花蓮":
+                x= "鳳林";
+                break;
             case "古亭":
                 x= "中正";
+                break;
+            case "臺東":
+                x= "卑南";
                 break;
             case "忠明":
                 x= "西";
@@ -389,15 +573,26 @@ function tableRowClicked(x) {
             case "富貴角":
                 x= "石門";
                 break;
+            case "復興":
+                x= "前鎮";
+                break;
+            case "屏東":
+                x= "泰武";
+                break;
             case "馬祖":
                 x= "連江";
                 break;
         }
-        if (x +'區' === d.properties.TOWN || x+'鄉' === d.properties.TOWN || x+'鎮' === d.properties.TOWN || x+'市' === d.properties.TOWN) {
+        if(x === '東' && x + '區' === d.properties.TOWN && d.properties.COUNTY === '嘉義市'){
+            var county = d;
+            console.log(x,d);
+            click(d); 
+        }
+        else if (x +'區' === d.properties.TOWN || x+'鄉' === d.properties.TOWN || x+'鎮' === d.properties.TOWN || x+'市' === d.properties.TOWN) {
             var county = d;
             console.log(x,d);
             click(d); // pass json element that matches td data to click
-        };
+        }
         if (x +'市' === d.properties.COUNTY || x +'縣' === d.properties.COUNTY) {
             var county = d;
             console.log(x,d);
